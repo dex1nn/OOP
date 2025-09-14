@@ -47,7 +47,9 @@ void Student::set_telephone_number(char* tel_n)
 
 void Student::set_birthday(int d, int m, int y)
 {
-	
+	birthday.day = d;
+	birthday.mounth = m;
+	birthday.year = y;
 }
 
 int main()
