@@ -22,6 +22,7 @@ class Student
 	char* telephone_number;
 	date birthday;
 	city_d_country city_d_country_student;
+	char* educational_institution;
 	city_d_country city_d_country_educational_institution;
 
 public:
@@ -30,7 +31,16 @@ public:
 	void set_telephone_number(char*);
 	void set_birthday(int d, int m, int y);
 	void set_student_city_d_country(char*, char*);
+	void set_educational_institution(char*);
 	void set_educational_institution_city_d_country(char*, char*);
+
+	void get_name();
+	void get_lastname();
+	void get_telephone_number();
+	void get_birthday();
+	void get_student_city_d_country();
+	void get_educational_institution();
+	void get_educational_institution_city_d_country();
 };
 
 
@@ -42,6 +52,17 @@ int main()
 	s1.set_lastname((char*)"bubkin");
 	s1.set_telephone_number((char*)"066 1234 1212");
 	s1.set_birthday(9, 9, 2000);
+	s1.set_student_city_d_country((char*)"Kyiv", (char*)"Ukraina");
+	s1.set_educational_institution((char*)"ItStep");
+	s1.set_educational_institution_city_d_country((char*)"Krivoy Rog", (char*)"Ukraina");
+
+	s1.get_name();
+	s1.get_lastname();
+	s1.get_birthday();
+	s1.get_telephone_number();
+	s1.get_student_city_d_country();
+	s1.get_educational_institution();
+	s1.get_educational_institution_city_d_country();
 }
 
 void Student::set_name(char* n)
@@ -83,6 +104,13 @@ void Student::set_student_city_d_country(char* city, char* country)
 	strcpy_s(city_d_country_student.country, strlen(country), country);
 }
 
+void Student::set_educational_institution(char* name) 
+{
+	if (educational_institution) { delete[]educational_institution; }
+	educational_institution = new char[strlen(name)];
+	strcpy_s(educational_institution, strlen(name), name);
+}
+
 void Student::set_educational_institution_city_d_country(char* city, char* country)
 {
 	if (city_d_country_educational_institution.city) { delete[]city_d_country_educational_institution.city; }
@@ -92,4 +120,39 @@ void Student::set_educational_institution_city_d_country(char* city, char* count
 	if (city_d_country_educational_institution.country) { delete[]city_d_country_educational_institution.country; }
 	city_d_country_educational_institution.country = new char[strlen(country)];
 	strcpy_s(city_d_country_educational_institution.country, strlen(country), country);
+}
+
+void Student::get_name()
+{
+	cout << "Name: " << name << endl;
+}
+
+void Student::get_lastname()
+{
+	cout << "Last Name: " << last_name << endl;
+}
+
+void Student::get_telephone_number()
+{
+	cout << "Telephone Number: " << telephone_number << endl;
+}
+
+void Student::get_birthday()
+{
+	cout << "Date of Birth: " << birthday.day << "." << birthday.mounth << "." << birthday.year << endl;
+}
+
+void Student::get_student_city_d_country()
+{
+	cout << "Student's Location: " << city_d_country_student.city << ", " << city_d_country_student.country << endl;
+}
+
+void Student::get_educational_institution()
+{
+	cout << "Educational Institution: " << educational_institution << endl;
+}
+
+void Student::get_educational_institution_city_d_country()
+{
+	cout << "Institution's Location: " << city_d_country_educational_institution.city << ", " << city_d_country_educational_institution.country << endl;
 }
