@@ -28,14 +28,6 @@ private:
 	city_d_country city_d_country_educational_institution;
 
 public:
-	Student() : name(nullptr), last_name(nullptr), telephone_number(nullptr),
-		educational_institution(nullptr)
-	{
-		city_d_country_student.city = nullptr;
-		city_d_country_student.country = nullptr;
-		city_d_country_educational_institution.city = nullptr;
-		city_d_country_educational_institution.country = nullptr;
-	}
 
 	~Student()
 	{
