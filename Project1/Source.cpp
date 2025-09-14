@@ -20,7 +20,7 @@ public:
 	void set_name(char*);
 	void set_lastname(char*);
 	void set_telephone_number(char*);
-	void set_birthday();
+	void set_birthday(int d, int m, int y);
 	
 };
 
