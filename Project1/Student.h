@@ -43,6 +43,9 @@ public:
 		delete[] city_d_country_educational_institution.country;
 	}
 
+	Student(int d, int m, int y);
+	Student();
+
 	void set_name(char*);
 	void set_lastname(char*);
 	void set_telephone_number(char*);

@@ -1,5 +1,14 @@
 #include "Student.h"
 
+Student::Student(int d, int m, int y)
+{
+	birthday.day = d;
+	birthday.mounth = m;
+	birthday.year = y;
+}
+
+Student::Student(){}
+
 void Student::set_name(char* n)
 {
 	if (name) { delete[] name; }
