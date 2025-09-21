@@ -1,13 +1,24 @@
 #include "Student.h"
 
-Student::Student(int d, int m, int y)
+Student::Student(int d, int m, int y, const char* n, const char* ln, const char* tel_n, const char* city, const char* country, const char* inst_name, const char* inst_city, const char* inst_country)
+	: birthday{ d, m, y },
+	name(nullptr),
+	last_name(nullptr),
+	telephone_number(nullptr),
+	educational_institution(nullptr),
+	city_d_country_student{ nullptr, nullptr },
+	city_d_country_educational_institution{ nullptr, nullptr }
 {
-	birthday.day = d;
-	birthday.mounth = m;
-	birthday.year = y;
+	if (n) set_name(const_cast<char*>(n));
+	if (ln) set_lastname(const_cast<char*>(ln));
+	if (tel_n) set_telephone_number(const_cast<char*>(tel_n));
+	if (city && country) set_student_city_d_country(const_cast<char*>(city), const_cast<char*>(country));
+	if (inst_name) set_educational_institution(const_cast<char*>(inst_name));
+	if (inst_city && inst_country) set_educational_institution_city_d_country(const_cast<char*>(inst_city), const_cast<char*>(inst_country));
+
 }
 
-Student::Student(){}
+Student::Student() : Student(1, 1, 2000, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr) {}
 
 void Student::set_name(char* n)
 {
@@ -48,22 +59,22 @@ void Student::set_student_city_d_country(char* city, char* country)
 	strcpy_s(city_d_country_student.country, strlen(country) + 1, country);
 }
 
-void Student::set_educational_institution(char* name)
+void Student::set_educational_institution(char* inst_name)
 {
 	if (educational_institution) { delete[] educational_institution; }
-	educational_institution = new char[strlen(name) + 1];
-	strcpy_s(educational_institution, strlen(name) + 1, name);
+	educational_institution = new char[strlen(inst_name) + 1];
+	strcpy_s(educational_institution, strlen(inst_name) + 1, inst_name);
 }
 
-void Student::set_educational_institution_city_d_country(char* city, char* country)
+void Student::set_educational_institution_city_d_country(char* inst_city, char* inst_country)
 {
 	if (city_d_country_educational_institution.city) { delete[] city_d_country_educational_institution.city; }
-	city_d_country_educational_institution.city = new char[strlen(city) + 1];
-	strcpy_s(city_d_country_educational_institution.city, strlen(city) + 1, city);
+	city_d_country_educational_institution.city = new char[strlen(inst_city) + 1];
+	strcpy_s(city_d_country_educational_institution.city, strlen(inst_city) + 1, inst_city);
 
 	if (city_d_country_educational_institution.country) { delete[] city_d_country_educational_institution.country; }
-	city_d_country_educational_institution.country = new char[strlen(country) + 1];
-	strcpy_s(city_d_country_educational_institution.country, strlen(country) + 1, country);
+	city_d_country_educational_institution.country = new char[strlen(inst_country) + 1];
+	strcpy_s(city_d_country_educational_institution.country, strlen(inst_country) + 1, inst_country);
 }
 
 void Student::get_name()

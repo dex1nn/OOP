@@ -43,7 +43,7 @@ public:
 		delete[] city_d_country_educational_institution.country;
 	}
 
-	Student(int d, int m, int y);
+	Student(int d, int m, int y, const char* n, const char* ln, const char* tel_n, const char* city, const char* country, const char* inst_name, const char* inst_city, const char* inst_country);
 	Student();
 
 	void set_name(char*);
