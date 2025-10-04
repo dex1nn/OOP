@@ -3,9 +3,15 @@
 #include "Student.h"
 
 
+Student Factory(char* name_) {
+	Student name{ name_ };
+	name.get_name();
+	return name;
+}
+
 int main()
 {
-	Student s1{ 9, 9, 2000,"name","last name", "066 1234 1234", "qwe", "asd", "Itstep", "asd", "zxc" };
+	Student s1{ Factory((char*)("asd")) }; // { 9, 9, 2000, "name", "last name", "066 1234 1234", "qwe", "asd", "Itstep", "asd", "zxc" };
 
 	s1.set_name((char*)"vasia");
 	s1.set_lastname((char*)"bubkin");
