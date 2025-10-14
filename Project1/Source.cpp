@@ -41,6 +41,25 @@ public:
 		delete[] city_d_country_educational_institution.country;
 	}
 
+	Student(int d, int m, int y, const char* n, const char* ln, const char* tel_n, const char* city, const char* country, const char* inst_name, const char* inst_city, const char* inst_country)
+		: birthday{ d, m, y },
+		name(nullptr),
+		last_name(nullptr),
+		telephone_number(nullptr),
+		educational_institution(nullptr),
+		city_d_country_student{ nullptr, nullptr },
+		city_d_country_educational_institution{ nullptr, nullptr }
+	{
+		if (n) set_name(const_cast<char*>(n));
+		if (ln) set_lastname(const_cast<char*>(ln));
+		if (tel_n) set_telephone_number(const_cast<char*>(tel_n));
+		if (city && country) set_student_city_d_country(const_cast<char*>(city), const_cast<char*>(country));
+		if (inst_name) set_educational_institution(const_cast<char*>(inst_name));
+		if (inst_city && inst_country) set_educational_institution_city_d_country(const_cast<char*>(inst_city), const_cast<char*>(inst_country));
+	}
+
+	Student() : Student(1, 1, 2000, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr) {}
+
 	void set_name(char*);
 	void set_lastname(char*);
 	void set_telephone_number(char*);
@@ -58,11 +77,44 @@ public:
 	void get_educational_institution_city_d_country();
 };
 
+class Aspirant : public Student {
+	char* topic_candidat_work;
+public:
+	~Aspirant() {
+		delete[] topic_candidat_work;
+	}
+	Aspirant(int d, int m, int y, const char* n, const char* ln, const char* tel_n, const char* city, const char* country, const char* inst_name, const char* inst_city, const char* inst_country, const char* topic_cW) :Student{ d, m, y, n, ln, tel_n, city, country, inst_name, inst_city, inst_country }{
+		if (topic_cW) set_topic_CW(const_cast<char*>(topic_cW));
+	};
+
+	void get_topic_CW() {
+		cout << "Topic of the candidat`s work: " << topic_candidat_work << endl;
+	}
+	void set_topic_CW(char* topic_CW) {
+		if (topic_candidat_work) { delete[] topic_candidat_work; }
+		topic_candidat_work = new char[strlen(topic_CW) + 1];
+		strcpy_s(topic_candidat_work, strlen(topic_CW) + 1, topic_CW);
+	}
+};
 
 int main()
 {
-	Student s1;
+	//Student s1;
+	
+	//Student s1{ 9, 9, 2000, "name", "last name", "066 1234 1234", "qwe", "asd", "Itstep", "asd", "zxc" };
 
+	Aspirant A1{ 9, 9, 2000, "name", "last name", "066 1234 1234", "qwe", "asd", "Itstep", "asd", "zxc", "CPP-inherite" };
+
+	A1.get_name();
+	A1.get_lastname();
+	A1.get_birthday();
+	A1.get_telephone_number();
+	A1.get_student_city_d_country();
+	A1.get_educational_institution();
+	A1.get_educational_institution_city_d_country();
+	A1.get_topic_CW();
+	
+	/*
 	s1.set_name((char*)"vasia");
 	s1.set_lastname((char*)"bubkin");
 	s1.set_telephone_number((char*)"066 1234 1212");
@@ -70,7 +122,9 @@ int main()
 	s1.set_student_city_d_country((char*)"Kyiv", (char*)"Ukraina");
 	s1.set_educational_institution((char*)"ItStep");
 	s1.set_educational_institution_city_d_country((char*)"Krivoy Rog", (char*)"Ukraina");
+	*/
 
+	/*
 	s1.get_name();
 	s1.get_lastname();
 	s1.get_birthday();
@@ -78,6 +132,7 @@ int main()
 	s1.get_student_city_d_country();
 	s1.get_educational_institution();
 	s1.get_educational_institution_city_d_country();
+	*/
 }
 
 void Student::set_name(char* n)
